@@ -32,41 +32,42 @@ class Driverclass
 
 
 
-class Solution
-{
-    //Function to check if brackets are balanced or not.
-    static boolean ispar(String x)
-    {
-        if (x.length()<=1){
+class Solution {
+    // Function to check if brackets are balanced or not.
+    static boolean ispar(String x) {
+        // If the length of the string is odd, it cannot be balanced
+        if (x.length() % 2 != 0) {
             return false;
         }
-        Stack<Character> st=new Stack<>();
-        for(int i=0;i<x.length();i++)
-        {
-            if(x.charAt(i)=='{'||x.charAt(i)=='['||x.charAt(i)=='(')
-            {
-                st.add(x.charAt(i));
-              
-            }
-            else if(x.charAt(i)=='}'||x.charAt(i)==']'||x.charAt(i)==')')
-            {
-                if(st.isEmpty())
-                {
+        
+        Stack<Character> st = new Stack<>();
+        
+        for (int i = 0; i < x.length(); i++) {
+            char ch = x.charAt(i);
+            
+            // If it's an opening bracket, push it onto the stack
+            if (ch == '{' || ch == '(' || ch == '[') {
+                st.push(ch);
+            } 
+            // If it's a closing bracket
+            else if (ch == '}' || ch == ']' || ch == ')') {
+                // If the stack is empty, there's no matching opening bracket
+                if (st.isEmpty()) {
                     return false;
                 }
                 
-                else if(st.peek().equals('{') &&x.charAt(i)=='}' || 
-                st.peek().equals('[') && x.charAt(i)==']'||
-                st.peek().equals('(') && x.charAt(i)==')')
-                {
-                    st.pop();
-                }
-                else{
-                    return false;
+                // Check for matching pairs
+                if ((ch == '}' && st.peek() == '{') ||
+                    (ch == ']' && st.peek() == '[') ||
+                    (ch == ')' && st.peek() == '(')) {
+                    st.pop(); // If they match, pop the opening bracket
+                } else {
+                    return false; // Mismatched brackets
                 }
             }
         }
-        return st.isEmpty()?true:false;
-        // add your code here
+        
+        // If the stack is empty, all brackets were matched
+        return st.isEmpty();
     }
 }
