@@ -2,8 +2,8 @@ class Solution:
     def alternateSort(self,arr):
         ar=sorted(arr)
         i=0
+        j=len(arr)-1
         a=[]
-        j=len(ar)-1
         while(i<j):
             a.append(ar[j])
             a.append(ar[i])
@@ -12,8 +12,6 @@ class Solution:
         if(len(ar)%2!=0):
             a.append(ar[j])
         return a
-            
-        
         # Your code goes here
 
 
