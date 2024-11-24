@@ -4,15 +4,16 @@ class Solution:
     ##Complete this function
     #Function to find the sum of contiguous subarray with maximum sum.
     def maxSubArraySum(self,arr):
-        maxe=-99999999
-        ma=-99999999
-        maxs=-99999999
-        for i in arr:
-            ma=maxe+i
-            maxe=max(ma,i)
-            maxs=max(maxe,maxs)
-        return maxs
+        mn=arr[0]
+        ms=arr[0]
+        for i in range(1,len(arr)):
+            mn=max(mn+arr[i],arr[i])
+            ms=max(mn,ms)
+        return ms
             
+            
+            
+        ##Your code here
 
 
 #{ 
