@@ -30,37 +30,41 @@ class Node{
 */
 
 class Solution {
-    // Function to rotate a linked list.
     public Node rotate(Node head, int k) {
-        Node start=head;
-        Node temp=head;
-        Node nhead=null;
-        int c=1;
-        for(int i=0;i<k-1;i++)
-        {
-            
-            temp=temp.next;
-            c+=1;
-            
-        }
-        start=temp;
-        nhead=start.next;
-        while(temp.next!=null)
-        {
-            c+=1;
-            temp=temp.next;
-        }
-        // System.out.println(c);
-        if(k==c)
+        if(head==null || head.next==null)
         {
             return head;
         }
-        temp.next=head;
-        start.next=null;
-        head=nhead;
         
-        return nhead;
-        // add code here
+        Node temp=head;
+        int cnt=1;
+        while(temp.next!=null)
+        {
+            cnt+=1;
+            temp=temp.next;
+        }
+        k=k%cnt;
+        if(k%cnt==0)
+        {
+         
+            return head;
+        }
+        
+        
+        
+        temp.next=head;
+        Node t=head;
+        for(int i=0;i<k-1;i++)
+        {
+            t=t.next;
+        }
+        temp=t.next;
+        t.next=null;
+        return temp;
+        
+        
+        
+        
     }
 }
 
@@ -105,6 +109,8 @@ public class GFG {
             Solution ob = new Solution();
             head = ob.rotate(head, k);
             printList(head);
+
+            System.out.println("~");
         }
     }
 }
