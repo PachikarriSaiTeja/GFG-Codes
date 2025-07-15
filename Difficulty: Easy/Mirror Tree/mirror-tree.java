@@ -16,10 +16,11 @@ class Solution {
         if(node==null){
             return;
         }
+        mirror(node.right);
+        mirror(node.left);
         Node temp=node.right;
         node.right=node.left;
         node.left=temp;
-        mirror(node.right);
-        mirror(node.left);
+        
     }
 }
